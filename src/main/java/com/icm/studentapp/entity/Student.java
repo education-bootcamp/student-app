@@ -18,7 +18,10 @@ public class Student {
     @Id
     @Column(name = "student_id")
     private String studentId;
+    @Column(nullable = false, length = 45)
     private String name;
+    @Column(nullable = false, length = 200)
     private String address;
-    private String salary;
+    @Column(nullable = false)
+    private double salary;
 }
