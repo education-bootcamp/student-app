@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     @PostMapping
     public String saveStudent(@RequestBody RequestStudentDto dto){return dto.toString();}
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public String findStudent(@PathVariable String id){return "find student";}// localhost:8000/api/v1/4654
     @DeleteMapping(params = "id")
     public String deleteStudent(@RequestParam String id){return "delete student";}// localhost:8000/api/v1/students?id=1234
