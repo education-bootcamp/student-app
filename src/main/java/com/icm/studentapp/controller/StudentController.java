@@ -1,9 +1,13 @@
 package com.icm.studentapp.controller;
 
+import com.icm.studentapp.dto.paginated.PaginatedStudentResponseDto;
 import com.icm.studentapp.dto.request.RequestStudentDto;
+import com.icm.studentapp.dto.response.ResponseStudentDto;
 import com.icm.studentapp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/students")
@@ -18,13 +22,12 @@ public class StudentController {
     @PostMapping
     public String saveStudent(@RequestBody RequestStudentDto dto) {
         studentService.saveStudent(dto);
-        return dto.toString();
+        return "Saved!";
     }
 
     @GetMapping("/{id}")
-    public String findStudent(@PathVariable String id) {
-        studentService.findStudent(id);
-        return "find student";
+    public ResponseStudentDto findStudent(@PathVariable String id) {
+        return studentService.findStudent(id);
     }// localhost:8000/api/v1/4654
 
     @DeleteMapping(params = "id")
@@ -40,8 +43,7 @@ public class StudentController {
     }
 
     @GetMapping(path = "/list", params = {"page", "size"})
-    public String findAllStudents(@RequestParam int page, @RequestParam int size) {
-        studentService.findAllStudents(page, size);
-        return "all student";
+    public PaginatedStudentResponseDto findAllStudents(@RequestParam int page, @RequestParam int size) {
+        return studentService.findAllStudents(page, size);
     }
 }
