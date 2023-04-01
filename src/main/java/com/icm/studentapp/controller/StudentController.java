@@ -46,4 +46,9 @@ public class StudentController {
     public PaginatedStudentResponseDto findAllStudents(@RequestParam int page, @RequestParam int size) {
         return studentService.findAllStudents(page, size);
     }
+
+    @GetMapping(path = "/search", params = {"page", "size","text"})
+    public PaginatedStudentResponseDto searchStudents(@RequestParam String text, @RequestParam int page, @RequestParam int size) {
+        return studentService.searchStudents(page, size, text);
+    }
 }

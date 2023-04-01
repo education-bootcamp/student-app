@@ -12,5 +12,5 @@ public interface StudentService {
     public void deleteStudent(String id);
     public ResponseStudentDto findStudent(String id);
     public PaginatedStudentResponseDto findAllStudents(int page, int size);
-    //public PaginatedStudentResponseDto searchStudents(String searchText, int page, int size);
+    PaginatedStudentResponseDto searchStudents(int page, int size, String text);
 }

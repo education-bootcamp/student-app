@@ -89,4 +89,24 @@ public class StudentServiceImpl implements StudentService {
                 count,dtos
         );
     }
+
+    @Override
+    public PaginatedStudentResponseDto searchStudents(int page, int size, String text) {
+        text="%"+text+"%";
+        long count = studentRepo.getCountWithSearchText(text);
+        Page<Student> all = studentRepo.findAllWithSearchText(text, PageRequest.of(page, size));
+        List<ResponseStudentDto> dtos = new ArrayList<>();
+        for (Student s:all
+        ) {
+            dtos.add(new ResponseStudentDto(
+                    s.getStudentId(),
+                    s.getName(),
+                    s.getAddress(),
+                    s.getSalary()
+            ));
+        }
+        return new PaginatedStudentResponseDto(
+                count,dtos
+        );
+    }
 }
